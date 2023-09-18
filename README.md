@@ -11,3 +11,9 @@ Given a version number **MAJOR.MINOR.PATCH** (eg. `1.0.1`), increment the:
 - **PATCH** version when you make backward compatible bug fixes
 
 Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+## Helpful Links
+- https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+- https://en.wikipedia.org/wiki/Shebang_(Unix)
+- https://www.geeksforgeeks.org/chmod-command-linux/
+- https://www.gitpod.io/docs/configure/workspaces/tasks

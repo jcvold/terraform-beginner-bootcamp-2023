@@ -17,10 +17,32 @@ Additional labels for pre-release and build metadata are available as extensions
 - https://en.wikipedia.org/wiki/Shebang_(Unix)
 - https://www.geeksforgeeks.org/chmod-command-linux/
 - https://www.gitpod.io/docs/configure/workspaces/tasks
-___
+
+## AWS
 ### Test AWS Credentials
 ```sh
 aws sts get-caller-idemntity
 ```
 ### AWS CLI env vars
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+
+## Terraform Basics
+
+### Terraform Registry
+https://registry.terraform.io/
+
+Where you get providers and modules
+### Terraform Steps
+`Terraform Init`
+
+> Initializes Terraform in your repo/downloads necessary files
+
+`Terraform Plan`
+
+> Preview planned changes
+
+`Terrafrom Apply`
+
+> Commit changes
+
+

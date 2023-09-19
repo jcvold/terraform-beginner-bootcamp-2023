@@ -17,3 +17,10 @@ Additional labels for pre-release and build metadata are available as extensions
 - https://en.wikipedia.org/wiki/Shebang_(Unix)
 - https://www.geeksforgeeks.org/chmod-command-linux/
 - https://www.gitpod.io/docs/configure/workspaces/tasks
+___
+### Test AWS Credentials
+```sh
+aws sts get-caller-idemntity
+```
+### AWS CLI env vars
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html

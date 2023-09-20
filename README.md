@@ -45,4 +45,8 @@ Where you get providers and modules
 
 > Commit changes
 
+`Terraform Destroy`
+
+> Will destroy resources
+
 

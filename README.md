@@ -49,4 +49,7 @@ Where you get providers and modules
 
 > Will destroy resources
 
+## Terraform Cloud Setup / Issues
+After you setup your account/project/workspace with the cloud provider, you need to setup a token for allowing remote access from gitpod/vscode.
 
+Run `terraform init` it will ask if you want to migrate your state to the cloud. Select _yes_. It will launch a command line config utility. Select P for print to display the URL for the pagfe to create the token. Create a token, then past it in when prompted.

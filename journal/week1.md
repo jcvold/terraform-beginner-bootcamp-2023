@@ -109,3 +109,48 @@ module "terrahouse_aws" {
 
 
 [Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+## Working with Files in Terraform
+
+
+### `fileexists` function
+
+`fileexists` is a built in terraform function to check the existance of a file.
+
+`condition = fileexists(var.error_html_filepath)`
+
+https://developer.hashicorp.com/terraform/language/functions/fileexists
+
+### `filemd5` function
+
+`filemd5` is a variant of md5 that hashes the contents of a given file rather than a literal string.
+
+https://developer.hashicorp.com/terraform/language/functions/filemd5
+
+### `path` Variable
+
+In terraform there is a special variable called `path` that allows us to reference local paths:
+- path.module = get the path for the current module
+- path.root = get the path for the root module
+
+
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```tf
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = "${path.root}/public/index.html"
+}
+```
+
+### `etag` function
+
+`etag = filemd5("path/to/file")`
+
+An etag (entity tag) is a hash of the object. The Etag reflects changes in the object’s contents. It’s used to determine whether an object has changed since the last request.
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#etag
+
+Use this to track changes in file contents eg: `index.html`
+

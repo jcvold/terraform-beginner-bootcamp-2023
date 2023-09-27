@@ -39,3 +39,7 @@ variable "error_html_filepath" {
     error_message = "The provided path for error.html does not exist."
   }
 }
+
+variable "content_version" {
+  type = number
+}

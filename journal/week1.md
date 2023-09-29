@@ -1,5 +1,6 @@
 # Terraform Beginner Bootcamp 2023 - Week 1
-https://github.com/omenking/terraform-beginner-bootcamp-2023
+
+<https://github.com/omenking/terraform-beginner-bootcamp-2023>
 
 ![Week 1 Architectural Diagram](week1-arch-diagram.png)
 
@@ -25,6 +26,7 @@ PROJECT_ROOT
 ### Terraform Cloud Variables
 
 In terraform we can set two kind of variables:
+
 - Enviroment Variables - those you would set in your bash terminal eg. AWS credentials
 - Terraform Variables - those that you would normally set in your tfvars file
 
@@ -35,6 +37,7 @@ We can set Terraform Cloud variables to be sensitive so they are not shown visib
 [Terraform Input Variables](https://developer.hashicorp.com/terraform/language/values/variables)
 
 ### var flag
+
 We can use the `-var` flag to set an input variable or override a variable in the tfvars file eg. `terraform -var user_ud="my-user_id"`
 
 ### var-file flag
@@ -71,7 +74,7 @@ You can use terraform port but it won't work for all cloud resources. You need c
 
 ### Fix Manual Configuration
 
-If someone goes and delete or modifies cloud resource manually through ClickOps. 
+If someone goes and delete or modifies cloud resource manually through ClickOps.
 
 If we run Terraform plan is with attempt to put our infrastructure back into the expected state fixing Configuration Drift
 
@@ -97,6 +100,7 @@ module "terrahouse_aws" {
 ### Modules Sources
 
 Using the source we can import the module from various places eg:
+
 - locally
 - Github
 - Terraform Registry
@@ -107,11 +111,9 @@ module "terrahouse_aws" {
 }
 ```
 
-
 [Modules Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
 
 ## Working with Files in Terraform
-
 
 ### `fileexists` function
 
@@ -119,20 +121,20 @@ module "terrahouse_aws" {
 
 `condition = fileexists(var.error_html_filepath)`
 
-https://developer.hashicorp.com/terraform/language/functions/fileexists
+<https://developer.hashicorp.com/terraform/language/functions/fileexists>
 
 ### `filemd5` function
 
 `filemd5` is a variant of md5 that hashes the contents of a given file rather than a literal string.
 
-https://developer.hashicorp.com/terraform/language/functions/filemd5
+<https://developer.hashicorp.com/terraform/language/functions/filemd5>
 
 ### `path` Variable
 
 In terraform there is a special variable called `path` that allows us to reference local paths:
+
 - path.module = get the path for the current module
 - path.root = get the path for the root module
-
 
 [Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
 
@@ -150,7 +152,7 @@ resource "aws_s3_object" "index_html" {
 
 An etag (entity tag) is a hash of the object. The Etag reflects changes in the object’s contents. It’s used to determine whether an object has changed since the last request.
 
-https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#etag
+<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object#etag>
 
 Use this to track changes in file contents eg: `index.html`
 
@@ -164,6 +166,7 @@ locals {
   s3_origin_id = "MyS3Origin"
 }
 ```
+
 [Local Values](https://developer.hashicorp.com/terraform/language/values/locals)
 
 ## Terraform Data Sources
@@ -179,6 +182,7 @@ output "account_id" {
   value = data.aws_caller_identity.current.account_id
 }
 ```
+
 [Data Sources](https://developer.hashicorp.com/terraform/language/data-sources)
 
 ## Working with JSON
@@ -203,12 +207,11 @@ We use the `jsonencode` to create the json policy inline in the hcl.
 
 [Meta Arguments Lifcycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
 
-
 ## Terraform Data
 
 Plain data values such as Local Values and Input Variables don't have any side-effects to plan against and so they aren't valid in `replace_triggered_by`. You can use `terraform_data`'s behavior of planning an action each time input changes to indirectly use a plain value to trigger replacement. This is a replacement to the deprecated `null` resource in terraform.
 
-https://developer.hashicorp.com/terraform/language/resources/terraform-data
+<https://developer.hashicorp.com/terraform/language/resources/terraform-data>
 
 ## Provisioners
 
@@ -232,7 +235,7 @@ resource "aws_instance" "web" {
 }
 ```
 
-https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec
+<https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec>
 
 ### Remote-exec
 
@@ -259,4 +262,21 @@ resource "aws_instance" "web" {
   }
 }
 ```
-https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec
+
+<https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec>
+
+## For Each Expressions
+
+The `for_each` meta-argument accepts a map or a set of strings, and creates an instance for each item in that map or set. Each instance has a distinct infrastructure object associated with it, and each is separately created, updated, or destroyed when the configuration is applied.
+
+```tf
+resource "aws_iam_user" "the-accounts" {
+  for_each = toset( ["Todd", "James", "Alice", "Dottie"] )
+  name     = each.key
+}
+
+```
+
+This is mostly useful when you are creating multiples of a cloud resource and you want to reduce the amount of repetitive terraform code.
+
+[For Each Expressions](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)

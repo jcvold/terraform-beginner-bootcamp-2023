@@ -19,7 +19,7 @@ terraform {
 
 provider "terratowns" {
   endpoint = "http://localhost:4567"
-  user_uuid="e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
+  user_uuid="9ba242de-7d1c-425b-be51-f697303792f2" 
   token="9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
 }
 # module "terrahouse_aws" {

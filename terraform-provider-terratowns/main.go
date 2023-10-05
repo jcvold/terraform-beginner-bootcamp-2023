@@ -124,6 +124,7 @@ func Resource() *schema.Resource {
 			},
 		},
 	}
+
 	log.Print("Resource:end")
 	return resource
 }
@@ -324,5 +325,6 @@ func resourceHouseDelete(ctx context.Context, d *schema.ResourceData, m interfac
 	d.SetId("")
 
 	log.Print("resourceHouseDelete:end")
+
 	return diags
 }

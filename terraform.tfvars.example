@@ -1,5 +1,5 @@
-index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-content_version= 1
-assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets"
 terratowns_endpoint = "https://terratowns.cloud/api"
+boardgames = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/boardgames"
+  content_version = 1
+}
